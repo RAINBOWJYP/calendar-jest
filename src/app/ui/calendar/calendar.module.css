@@ -28,3 +28,11 @@
     text-align: center;
     height: 3rem;
 }
+
+.eventBox {
+    background-color: #fffafa00;
+}
+
+.fc-event {
+    border: none;
+}

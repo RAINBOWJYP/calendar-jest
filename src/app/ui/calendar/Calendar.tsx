@@ -5,63 +5,100 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import styles from './calendar.module.css'
-import { useState } from 'react'
-interface Events {
-    [date: string]: string
-}
+import { useRef } from 'react'
 
-const Calendar = ({ year, month }: { year: number; month: number }) => {
-    const [events, setEvents] = useState<Events>({})
+const Calendar = () => {
+    const calendarRef = useRef<FullCalendar>(null)
 
-    const handleDateClick = (date: string) => {
-        const event = prompt(`Enter event for ${date}`)
-        if (event) {
-            setEvents({ ...events, [date]: event })
+    function goNext() {
+        if (calendarRef.current) {
+            const calendarApi = calendarRef.current.getApi()
+            calendarApi.next()
         }
     }
 
-    const renderCalendar = () => {
-        const daysInMonth = new Date(year, month, 0).getDate() //일자를 가져옵니다. ex) 2024년 2월 일자는 29
-        const firstDayOfMonth = new Date(year, month, 1).getDay() //1일자의 요일을 가져옵니다. 수요일은 3
-        console.log('🚀 ~ renderCalendar ~ firstDayOfMonth:', firstDayOfMonth)
-        const rows = []
-        let cells = []
-
-        // 빈 셀 추가 (첫 번째 요일 이전)
-        for (let i = 0; i < firstDayOfMonth; i++) {
-            cells.push(<td key={`empty-${i}`} className="empty-cell"></td>)
+    const renderEventContent = (eventInfo: any) => {
+        let color
+        let bgColor
+        switch (eventInfo.event.id) {
+            case 'youtube':
+                color = '#ff0000'
+                bgColor = '#fffafa'
+                break
+            case 'birth':
+                color = '#ff9f01'
+                bgColor = '#ff9f0110'
+                break
+            case 'md':
+                color = '#ffdf00'
+                bgColor = '#ffdf0010'
+                break
+            case 'radio':
+                color = '#00ff9f'
+                bgColor = '#00ff9d10'
+                break
+            default:
+                color = '#000'
+                bgColor = '#ffffffff'
+        }
+        const circleStyle = {
+            display: 'inline-block',
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            backgroundColor: color,
+            marginRight: '8px',
         }
 
-        for (let day = 1; day <= daysInMonth; day++) {
-            const date = `${year}-${month}-${String(day).padStart(2, '0')}`
-            cells.push(
-                <td
-                    key={date}
-                    onClick={() => handleDateClick(date)}
-                    className="cell"
-                >
-                    <div className="date">{day}</div>
-                    <div className="event">{events[date]}</div>
-                </td>
-            )
-            if ((day + firstDayOfMonth) % 7 === 0 || day === daysInMonth) {
-                rows.push(<tr key={day}>{cells}</tr>)
-                cells = []
-            }
-        }
-        return rows
+        return (
+            <div
+                className={styles.eventBox}
+                style={{ backgroundColor: bgColor }}
+            >
+                <span style={circleStyle}></span>
+                <b>{eventInfo.timeText}</b>
+                <span style={{ color: '#000' }}>{eventInfo.event.title}</span>
+            </div>
+        )
     }
 
     return (
-        <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            locale={'ko'}
-            events={[
-                { title: 'Event 1', date: '2024-05-25' },
-                { title: 'Event 2', date: '2024-05-26' },
-            ]}
-        />
+        <>
+            <button onClick={() => goNext()}>dd</button>
+            <FullCalendar
+                ref={calendarRef}
+                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                initialView="dayGridMonth"
+                locale={'ko'}
+                events={[
+                    {
+                        title: 'Event 1',
+                        date: '2024-05-25',
+                        id: 'youtube',
+                        borderColor: '#ffffffff',
+                    },
+                    {
+                        title: 'Event 2',
+                        date: '2024-05-25',
+                        id: 'radio',
+                        borderColor: '#ffffffff',
+                    },
+                    {
+                        title: 'Event 3',
+                        date: '2024-05-25',
+                        id: 'md',
+                        borderColor: '#ffffffff',
+                    },
+                    {
+                        title: 'Event 2',
+                        date: '2024-05-26',
+                        id: 'birth',
+                        borderColor: '#ffffffff',
+                    },
+                ]}
+                eventContent={renderEventContent}
+            />
+        </>
     )
 }
 
