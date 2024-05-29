@@ -6,8 +6,22 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import styles from './calendar.module.css'
 import { useRef } from 'react'
+import { format, parseISO } from 'date-fns'
 
-const Calendar = () => {
+export type EventType = {
+    id: number
+    title: string
+    type: string
+    start_dt: string
+    end_dt: string
+    url: string
+}
+
+export interface EventProps {
+    event: EventType[]
+}
+
+const Calendar = ({ event }: EventProps) => {
     const calendarRef = useRef<FullCalendar>(null)
 
     function goNext() {
@@ -70,32 +84,14 @@ const Calendar = () => {
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 locale={'ko'}
-                events={[
-                    {
-                        title: 'Event 1',
-                        date: '2024-05-25',
-                        id: 'youtube',
+                events={event.map((v) => {
+                    return {
+                        title: v.title,
+                        date: v.start_dt,
+                        id: v.type == '1' ? 'youtube' : '',
                         borderColor: '#ffffffff',
-                    },
-                    {
-                        title: 'Event 2',
-                        date: '2024-05-25',
-                        id: 'radio',
-                        borderColor: '#ffffffff',
-                    },
-                    {
-                        title: 'Event 3',
-                        date: '2024-05-25',
-                        id: 'md',
-                        borderColor: '#ffffffff',
-                    },
-                    {
-                        title: 'Event 2',
-                        date: '2024-05-26',
-                        id: 'birth',
-                        borderColor: '#ffffffff',
-                    },
-                ]}
+                    }
+                })}
                 eventContent={renderEventContent}
             />
         </>
