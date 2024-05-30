@@ -32,6 +32,13 @@
 .eventBox {
     background-color: #fffafa00;
     overflow: hidden;
+    padding: 4px 8px;
+    margin-left: 4px;
+    border-radius: 16px;
+}
+
+.eventBox span {
+    font-size: 12px;
 }
 
 .fc-event {

@@ -37,7 +37,7 @@ const Calendar = ({ event }: EventProps) => {
         switch (eventInfo.event.id) {
             case 'youtube':
                 color = '#ff0000'
-                bgColor = '#fffafa'
+                bgColor = '#fef0f0'
                 break
             case 'birth':
                 color = '#ff9f01'
@@ -70,31 +70,28 @@ const Calendar = ({ event }: EventProps) => {
                 style={{ backgroundColor: bgColor }}
             >
                 <span style={circleStyle}></span>
-                <b>{eventInfo.timeText}</b>
                 <span style={{ color: '#000' }}>{eventInfo.event.title}</span>
             </div>
         )
     }
 
     return (
-        <>
-            <button onClick={() => goNext()}>dd</button>
-            <FullCalendar
-                ref={calendarRef}
-                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                initialView="dayGridMonth"
-                locale={'ko'}
-                events={event.map((v) => {
-                    return {
-                        title: v.title,
-                        date: v.start_dt,
-                        id: v.type == '1' ? 'youtube' : '',
-                        borderColor: '#ffffffff',
-                    }
-                })}
-                eventContent={renderEventContent}
-            />
-        </>
+        <FullCalendar
+            ref={calendarRef}
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            locale={'ko'}
+            events={event.map((v) => {
+                return {
+                    title: v.title,
+                    start: v.start_dt,
+                    end: v.end_dt,
+                    id: v.type == '1' ? 'youtube' : '',
+                    borderColor: '#ffffffff',
+                }
+            })}
+            eventContent={renderEventContent}
+        />
     )
 }
 
