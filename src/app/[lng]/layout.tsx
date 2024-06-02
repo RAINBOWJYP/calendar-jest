@@ -4,6 +4,7 @@ import './globals.css'
 import { languages } from '@/app/i18n/settings'
 import { dir } from 'i18next'
 import { Header } from '../ui/header/Header'
+import Footer from '../ui/footer/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,6 +33,7 @@ export default function RootLayout({
                     <Header />
                 </header>
                 {children}
+                <Footer />
             </body>
         </html>
     )

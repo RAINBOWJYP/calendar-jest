@@ -38,6 +38,8 @@
     --callout-border-rgb: 172, 175, 176;
     --card-rgb: 180, 185, 188;
     --card-border-rgb: 131, 134, 135;
+
+    --divider: #b3b3b3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -92,6 +94,19 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 36px 72px;
+    border-top: 1px solid var(--divider);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
