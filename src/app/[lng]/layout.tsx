@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { languages } from '@/app/i18n/settings'
 import { dir } from 'i18next'
 import { Header } from '../ui/header/Header'
 import Footer from '../ui/footer/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Noto_Sans_KR({
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700'],
+})
 
 export const metadata: Metadata = {
     title: {
