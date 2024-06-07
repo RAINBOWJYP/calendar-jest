@@ -13,10 +13,10 @@ const inter = Noto_Sans_KR({
 
 export const metadata: Metadata = {
     title: {
-        template: '%s | PLAVE',
-        default: 'PLAVE',
+        template: '%s | DOLLS',
+        default: 'DOLLS',
     },
-    description: 'Plave Event',
+    description: 'Virtual Idol Plave Events',
 }
 
 export async function generateStaticParams() {
@@ -36,7 +36,7 @@ export default function RootLayout({
                     <Header />
                 </header>
                 {children}
-                <Footer />
+                {/* <Footer /> */}
             </body>
         </html>
     )

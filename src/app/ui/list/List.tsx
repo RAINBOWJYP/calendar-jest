@@ -4,82 +4,45 @@ import { EventType } from '../calendar/Calendar'
 import ListHeader from './ListHeader'
 import ListBody from './ListBody'
 import { Button } from '../button/Button'
+import { FaAngleRight } from 'react-icons/fa6'
+
+import styles from './list.module.scss'
 
 interface ListProps {
     event: EventType[]
+    isHeader: boolean
+    onClick: () => void
 }
-const List = ({ event }: ListProps) => {
+const List = ({ event, isHeader, onClick }: ListProps) => {
     return (
-        <div>
+        <div className={styles.list}>
             <table>
-                <ListHeader
-                    columns={[
-                        'No',
-                        'Title',
-                        'Type',
-                        'Member',
-                        'Start Date',
-                        'End Date',
-                        'URL',
-                    ]}
-                />
+                {isHeader && (
+                    <ListHeader
+                        columns={[
+                            'No',
+                            'Title',
+                            'Type',
+                            'Member',
+                            'Start Date',
+                            'End Date',
+                            'URL',
+                        ]}
+                    />
+                )}
                 <tbody>
                     {event.slice(0, 10).map((stream, index) => (
                         <ListBody
                             key={index}
                             data={[
-                                index,
                                 stream.title,
-                                '1',
-                                'abcde',
-                                formatDate(
-                                    stream.start_dt,
-                                    'yyyy:MM:dd HH:mm:ss'
-                                ),
-                                formatDate(
-                                    stream.end_dt,
-                                    'yyyy:MM:dd HH:mm:ss'
-                                ),
-                                <Button
-                                    onClick={() => {
-                                        window.open(
-                                            stream.url,
-                                            '_blank',
-                                            'noopener,noreferrer'
-                                        )
-                                    }}
-                                    label="보기"
-                                    size="small"
-                                />,
+                                formatDate(stream.start_dt, 'yyyy.MM.dd'),
+                                <a href={stream.url} target="_blank">
+                                    <FaAngleRight fill={'var(--gray-300)'} />
+                                </a>,
                             ]}
+                            onClick={onClick}
                         />
-                        // <tr key={index}>
-                        //     <td>{index}</td>
-                        //     <td>{stream.title}</td>
-                        //     <td>{'1'}</td>
-                        //     <td>{'abcde'}</td>
-                        //     <td>
-                        //         {formatDate(
-                        //             stream.start_dt,
-                        //             'yyyy:MM:dd HH:mm:ss'
-                        //         )}
-                        //     </td>
-                        //     <td>
-                        //         {formatDate(
-                        //             stream.end_dt,
-                        //             'yyyy:MM:dd HH:mm:ss'
-                        //         )}
-                        //     </td>
-                        //     <td>
-                        //         <a
-                        //             href={stream.url}
-                        //             target="_blank"
-                        //             rel="noopener noreferrer"
-                        //         >
-                        //             Link
-                        //         </a>
-                        //     </td>
-                        // </tr>
                     ))}
                 </tbody>
             </table>

@@ -1,0 +1,27 @@
+// Tabs.scss
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200);
+}
+
+.tab-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tab-item {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.tab-item.focused {
+    background-color: var(--blue-400);
+    border-radius: 32px;
+    color: white;
+}

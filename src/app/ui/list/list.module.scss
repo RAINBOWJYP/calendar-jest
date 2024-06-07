@@ -1,0 +1,16 @@
+.list {
+    table {
+        border-spacing: 0;
+    }
+}
+
+.list-body {
+    cursor: pointer;
+    &:hover {
+        background-color: var(--gray-25);
+    }
+    td {
+        border-bottom: 1px solid var(--gray-300);
+        padding: 16px;
+    }
+}

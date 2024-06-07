@@ -9,7 +9,6 @@ import { useRef } from 'react'
 import { format, parseISO } from 'date-fns'
 
 export type EventType = {
-    id: number
     title: string
     type: string
     start_dt: string

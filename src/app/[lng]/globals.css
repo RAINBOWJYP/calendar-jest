@@ -1,45 +1,83 @@
 :root {
-    --max-width: 1100px;
-    --border-radius: 12px;
-    --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-        'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-        'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+    --gray-25: #fcfcfd;
+    --gray-50: #f9fafb;
+    --gray-100: #f2f4f7;
+    --gray-200: #eaecf0;
+    --gray-300: #d0d5dd;
+    --gray-400: #98a2b3;
+    --gray-500: #667085;
+    --gray-600: #475467;
+    --gray-700: #344054;
+    --gray-800: #1d2939;
+    --gray-900: #101828;
 
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
+    --blue-25: #f5faff;
+    --blue-50: #eff8ff;
+    --blue-100: #d1e9ff;
+    --blue-200: #b2ddff;
+    --blue-300: #84caff;
+    --blue-400: #53b1fd;
+    --blue-500: #2e90fa;
+    --blue-600: #1570ef;
+    --blue-700: #175cd3;
+    --blue-800: #1849a9;
+    --blue-900: #194185;
 
-    --primary-glow: conic-gradient(
-        from 180deg at 50% 50%,
-        #16abff33 0deg,
-        #0885ff33 55deg,
-        #54d6ff33 120deg,
-        #0071ff33 160deg,
-        transparent 360deg
-    );
-    --secondary-glow: radial-gradient(
-        rgba(255, 255, 255, 1),
-        rgba(255, 255, 255, 0)
-    );
+    --pink-25: #fef6fb;
+    --pink-50: #fdf2fa;
+    --pink-100: #fce7f6;
+    --pink-200: #fcceee;
+    --pink-300: #faa7e0;
+    --pink-400: #f670c7;
+    --pink-500: #ee46bc;
+    --pink-600: #dd2590;
+    --pink-700: #c11574;
+    --pink-800: #9e165f;
+    --pink-900: #851651;
 
-    --tile-start-rgb: 239, 245, 249;
-    --tile-end-rgb: 228, 232, 233;
-    --tile-border: conic-gradient(
-        #00000080,
-        #00000040,
-        #00000030,
-        #00000020,
-        #00000010,
-        #00000010,
-        #00000080
-    );
+    --error-25: #fffbfa;
+    --error-50: #fef3f2;
+    --error-100: #fee4e2;
+    --error-200: #fecdca;
+    --error-300: #fda29b;
+    --error-400: #f97066;
+    --error-500: #f04438;
+    --error-600: #d92d20;
+    --error-700: #b42318;
+    --error-800: #912018;
+    --error-900: #7a271a;
 
-    --callout-rgb: 238, 240, 241;
-    --callout-border-rgb: 172, 175, 176;
-    --card-rgb: 180, 185, 188;
-    --card-border-rgb: 131, 134, 135;
+    --warning-25: #fffcf5;
+    --warning-50: #fffaeb;
+    --warning-100: #fef0c7;
+    --warning-200: #fedf89;
+    --warning-300: #fec84b;
+    --warning-400: #fdb022;
+    --warning-500: #f79009;
+    --warning-600: #dc6803;
+    --warning-700: #b54708;
+    --warning-800: #93370d;
+    --warning-900: #7a2e0e;
+
+    --success-25: #f6fef9;
+    --success-50: #ecfdf3;
+    --success-100: #d1fadf;
+    --success-200: #a6f4c5;
+    --success-300: #6ce9a6;
+    --success-400: #32d583;
+    --success-500: #12b76a;
+    --success-600: #039855;
+    --success-700: #027a48;
+    --success-800: #05603a;
+    --success-900: #054f31;
 
     --divider: #b3b3b3;
+
+    --member-yejun: #5daded;
+    --member-noah: #aa8ed6;
+    --member-bamby: #f0b1c4;
+    --member-eunho: #dd2e44;
+    --member-hamin: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -113,4 +151,12 @@ footer {
     html {
         color-scheme: dark;
     }
+}
+
+.list-wrapper {
+    margin: 72px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
 }
