@@ -127,6 +127,7 @@ body {
     max-width: 100vw;
     overflow-x: hidden;
     font-size: 16px;
+    overflow-y: auto;
 }
 
 a {
@@ -154,7 +155,7 @@ footer {
 }
 
 .list-wrapper {
-    margin: 72px 0;
+    margin: 36px 0;
     display: flex;
     flex-direction: column;
     align-items: center;

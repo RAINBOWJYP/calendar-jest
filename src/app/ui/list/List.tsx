@@ -1,12 +1,12 @@
 'use client'
 import { formatDate } from 'date-fns'
-import { EventType } from '../calendar/Calendar'
 import ListHeader from './ListHeader'
 import ListBody from './ListBody'
 import { Button } from '../button/Button'
 import { FaAngleRight } from 'react-icons/fa6'
 
 import styles from './list.module.scss'
+import { EventType } from '@/app/lib/db'
 
 interface ListProps {
     event: EventType[]

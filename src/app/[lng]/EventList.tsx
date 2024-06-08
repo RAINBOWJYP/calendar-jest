@@ -1,5 +1,5 @@
 'use client'
-import { EventType } from '../ui/calendar/Calendar'
+import { EventType } from '../lib/db'
 import List from '../ui/list/List'
 
 interface EventProps {

@@ -12,6 +12,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.14",
     "@fullcalendar/daygrid": "^6.1.13",
     "@fullcalendar/interaction": "^6.1.13",
     "@fullcalendar/react": "^6.1.13",

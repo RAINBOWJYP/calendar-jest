@@ -13,8 +13,8 @@ const inter = Noto_Sans_KR({
 
 export const metadata: Metadata = {
     title: {
-        template: '%s | DOLLS',
-        default: 'DOLLS',
+        template: '%s | PlliFor',
+        default: 'PlliFor',
     },
     description: 'Virtual Idol Plave Events',
 }
