@@ -12,18 +12,25 @@
         background-color: transparent;
     }
 }
-.eventBox {
+.event-box {
     background-color: #fffafa00;
     overflow: hidden;
     padding: 4px 8px;
     margin-left: 4px;
     border-radius: 16px;
+    cursor: pointer;
 }
 
-.eventBox span {
+.event-box span {
     font-size: 12px;
 }
 
 .fc-event {
     border: none;
+}
+
+.fc-daygrid-dot-event {
+    &:hover {
+        background-color: transparent;
+    }
 }

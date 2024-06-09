@@ -1,0 +1,15 @@
+.tag {
+    padding: 4px 8px;
+    background-color: var(--success-500);
+    width: fit-content;
+    border-radius: 8px;
+    color: white;
+}
+
+.tag.primary {
+    background-color: var(--blue-500);
+}
+
+.tag.secondary {
+    background-color: var(--pink-500);
+}
