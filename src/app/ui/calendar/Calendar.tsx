@@ -6,13 +6,13 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import './calendar.scss'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { EventType } from '@/app/lib/db'
 import { usePathname } from 'next/navigation'
 import { IoClose } from 'react-icons/io5'
-import Tag from '../tag/Tag'
 import axios from 'axios'
 import { formatDate } from 'date-fns'
-import Image from 'next/image'
+import { EventType } from '@/app/lib/events'
+import VideoDetails from '../modal/VideoDetails'
+import Modal from '../modal/Modal'
 
 export interface EventProps {
     event: EventType[]
@@ -142,20 +142,12 @@ const Calendar = ({ event }: EventProps) => {
                 }}
             />
             {isModalOpen && selectedEvent && (
-                <div className="modal" onClick={handleCloseModal}>
-                    <div
-                        className="modal-content"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <IoClose
-                            className="modal-close"
-                            onClick={handleCloseModal}
-                        />
-                        <VideoDetails
-                            videoId={selectedEvent.url.split('v=')[1]}
-                        />
-                    </div>
-                </div>
+                <Modal onClick={handleCloseModal}>
+                    <VideoDetails
+                        videoId={selectedEvent.url.split('v=')[1]}
+                        url={selectedEvent.url}
+                    />
+                </Modal>
             )}
         </div>
     )
@@ -168,105 +160,3 @@ const typeList: { [key: string]: string } = {
 }
 
 export default Calendar
-
-type VideoDetailsProps = {
-    videoId: string
-}
-
-interface Thumbnail {
-    url: string
-    width: number
-    height: number
-}
-
-type VideoDetails = {
-    title: string
-    description: string
-    publishedAt: string
-    isLive: boolean
-    isShort: boolean
-    thumbnail: Thumbnail
-    actualStartTime: string | null
-    actualEndTime: string | null
-    scheduledStartTime: string | null
-    scheduledEndTime: string | null
-}
-
-const VideoDetails = ({ videoId }: VideoDetailsProps) => {
-    const [videoDetails, setVideoDetails] = useState<VideoDetails | null>(null)
-
-    useEffect(() => {
-        const fetchVideoDetails = async () => {
-            try {
-                const response = await axios.get(`/api/youtube/${videoId}`)
-                setVideoDetails(response.data)
-            } catch (error) {
-                console.error('Error fetching video details:', error)
-            }
-        }
-
-        fetchVideoDetails()
-    }, [videoId])
-
-    if (!videoDetails) {
-        return <div>Loading...</div>
-    }
-
-    return (
-        <div style={{ display: 'flex', gap: '16px' }}>
-            <img
-                src={videoDetails.thumbnail.url}
-                width={videoDetails.thumbnail.width}
-                height={videoDetails.thumbnail.height}
-                alt="thumbnail"
-            />
-            <div>
-                <h3>{videoDetails.title}</h3>
-                <p>{videoDetails.description}</p>
-                <p>
-                    게시날짜:
-                    {formatDate(
-                        videoDetails.publishedAt,
-                        'yyyy.MM.dd HH:mm:ss'
-                    )}
-                </p>
-                {videoDetails.actualStartTime && (
-                    <p>
-                        라이브 실제 시작일:{' '}
-                        {formatDate(
-                            videoDetails.actualStartTime,
-                            'yyyy.MM.dd HH:mm:ss'
-                        )}
-                    </p>
-                )}
-                {videoDetails.actualEndTime && (
-                    <p>
-                        라이브 실제 종료일:
-                        {formatDate(
-                            videoDetails.actualEndTime,
-                            'yyyy.MM.dd HH:mm:ss'
-                        )}
-                    </p>
-                )}
-                {videoDetails.scheduledStartTime && (
-                    <p>
-                        라이브 공식 시작일:{' '}
-                        {formatDate(
-                            videoDetails.scheduledStartTime,
-                            'yyyy.MM.dd HH:mm:ss'
-                        )}
-                    </p>
-                )}
-                {videoDetails.scheduledEndTime && (
-                    <p>
-                        영상 종료일:{' '}
-                        {formatDate(
-                            videoDetails.scheduledEndTime,
-                            'yyyy.MM.dd HH:mm:ss'
-                        )}
-                    </p>
-                )}
-            </div>
-        </div>
-    )
-}

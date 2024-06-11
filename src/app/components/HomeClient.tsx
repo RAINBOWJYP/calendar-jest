@@ -4,7 +4,7 @@ import EventList from '../[lng]/EventList'
 import Calendar from '../ui/calendar/Calendar'
 import { useState } from 'react'
 import Tabs from '../ui/tab/Tabs'
-import { EventType } from '../lib/db'
+import { EventType } from '../lib/events'
 
 interface HomeProps {
     i18nTrans: { [key: string]: string }

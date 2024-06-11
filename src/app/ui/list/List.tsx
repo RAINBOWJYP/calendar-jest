@@ -6,14 +6,15 @@ import { Button } from '../button/Button'
 import { FaAngleRight } from 'react-icons/fa6'
 
 import styles from './list.module.scss'
-import { EventType } from '@/app/lib/db'
+import { EventType } from '@/app/lib/events'
 
 interface ListProps {
     event: EventType[]
     isHeader: boolean
+    setEvent: (stream: EventType) => void
     onClick: () => void
 }
-const List = ({ event, isHeader, onClick }: ListProps) => {
+const List = ({ event, isHeader, onClick, setEvent }: ListProps) => {
     return (
         <div className={styles.list}>
             <table>
@@ -41,7 +42,11 @@ const List = ({ event, isHeader, onClick }: ListProps) => {
                                     <FaAngleRight fill={'var(--gray-300)'} />
                                 </a>,
                             ]}
-                            onClick={onClick}
+                            onClick={() => {
+                                console.log(stream)
+                                onClick()
+                                setEvent(stream)
+                            }}
                         />
                     ))}
                 </tbody>

@@ -1,6 +1,6 @@
 import { useTranslation } from '../i18n'
-import { getEvents } from '../lib/db'
 import HomeClient from '../components/HomeClient'
+import { getEvents } from '../lib/events'
 type Props = {
     params: {
         lng: any

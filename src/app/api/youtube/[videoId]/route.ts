@@ -8,6 +8,7 @@ interface Thumbnail {
 }
 
 type VideoDetails = {
+    id: string
     title: string
     description: string
     publishedAt: string
@@ -55,13 +56,14 @@ export async function GET(
 
         const video = response.data.items[0]
 
+        const id = video.id
         const title = video.snippet.title
         const description = video.snippet.description
         const publishedAt = video.snippet.publishedAt
         const liveBroadcastContent = video.snippet.liveBroadcastContent
         const isLive = liveBroadcastContent === 'live'
         const isShort = video.snippet.categoryId === '22' // You may need to adjust this logic
-        const thumbnail = video.snippet.thumbnails.default
+        const thumbnail = video.snippet.thumbnails.medium
 
         let actualStartTime = null
         let actualEndTime = null
@@ -76,6 +78,7 @@ export async function GET(
         }
 
         const videoDetails: VideoDetails = {
+            id,
             title,
             description,
             publishedAt,
