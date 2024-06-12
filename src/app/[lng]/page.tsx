@@ -1,6 +1,6 @@
 import { useTranslation } from '../i18n'
 import HomeClient from '../components/HomeClient'
-import { getEvents } from '../lib/events'
+import { getEventList, getEvents } from '../lib/events'
 type Props = {
     params: {
         lng: any
@@ -11,6 +11,7 @@ type Props = {
 export default async function Home({ params: { lng }, searchParams }: Props) {
     const { t } = await useTranslation(lng)
     const events = await getEvents()
+    const eventList = await getEventList(10, 0)
 
     const i18nTrans = {
         cal: t('calendar'),
@@ -23,7 +24,11 @@ export default async function Home({ params: { lng }, searchParams }: Props) {
                 <div className="filter-zone">
                     {`💙${t('예준')}💜${t('노아')}💗${t('밤비')}❤️${t('은호')}🖤${t('하민')}`}
                 </div>
-                <HomeClient i18nTrans={i18nTrans} events={events} />
+                <HomeClient
+                    i18nTrans={i18nTrans}
+                    events={events}
+                    eventList={eventList}
+                />
             </div>
         </div>
     )

@@ -9,9 +9,10 @@ import { EventType } from '../lib/events'
 interface HomeProps {
     i18nTrans: { [key: string]: string }
     events: EventType[]
+    eventList: EventType[]
 }
 
-const HomeClient = ({ i18nTrans, events }: HomeProps) => {
+const HomeClient = ({ i18nTrans, events, eventList }: HomeProps) => {
     const lists = [i18nTrans.cal, i18nTrans.list]
     const [activeTab, setActiveTab] = useState<string>(lists[0])
     return (
@@ -21,7 +22,7 @@ const HomeClient = ({ i18nTrans, events }: HomeProps) => {
                 <Calendar event={events} />
             ) : (
                 <>
-                    <EventList events={events} />
+                    <EventList eventList={eventList} />
                     <FaAngleDown fill={'var(--divider)'} />
                 </>
             )}

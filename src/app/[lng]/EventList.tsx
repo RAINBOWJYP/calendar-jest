@@ -6,17 +6,17 @@ import Modal from '../ui/modal/Modal'
 import VideoDetails from '../ui/modal/VideoDetails'
 
 interface EventProps {
-    events: EventType[]
+    eventList: EventType[]
 }
 
-const EventList = ({ events }: EventProps) => {
+const EventList = ({ eventList }: EventProps) => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     const [event, setEvent] = useState<EventType | null>(null)
 
     return (
         <>
             <List
-                event={events}
+                initialEventList={eventList}
                 isHeader={false}
                 onClick={() => {
                     setIsModalOpen(true)
